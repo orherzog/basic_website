@@ -1,19 +1,20 @@
-# Use the official Python base image
+# Use official Python image from the Docker Hub
 FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the Python script and requirements.txt into the container
-COPY google_search.py /app/
-COPY requirements.txt /app/
+# Copy the requirements file into the container
+COPY requirements.txt .
 
-# Install dependencies from requirements.txt
+# Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Accept environment variables for API key and CSE ID
-ENV GOOGLE_API_KEY=${GOOGLE_API_KEY}
-ENV GOOGLE_CSE_ID=${GOOGLE_CSE_ID}
+# Copy the rest of the application code into the container
+COPY . .
 
-# Run the Python script when the container starts
-CMD ["python", "google_search.py"]
+# Expose port 5000 for the Flask app
+EXPOSE 5000
+
+# Set the command to run the app
+CMD ["python", "app.py"]

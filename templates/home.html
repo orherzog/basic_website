@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ user['name'] }}!</h2>
+    <p>Email: {{ user['email'] }}</p>
+    <form action="/search" method="POST">
+        <input type="text" name="query" placeholder="Search Google" required>
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}
