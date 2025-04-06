@@ -1,0 +1,9 @@
+# Ignore the .env file containing sensitive information
+.env
+
+# Other common files/folders to ignore
+*.pyc
+__pycache__/
+node_modules/
+.DS_Store
+*.log
